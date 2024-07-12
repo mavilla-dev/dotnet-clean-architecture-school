@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "School.Core", "School.Core\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "School.RestApi", "School.RestApi\School.RestApi.csproj", "{F106C6C5-A3B2-4BC9-86E8-31F04D45A949}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "School.Application", "School.Application\School.Application.csproj", "{47944A16-DD7D-43D5-B473-86B743C12BB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F106C6C5-A3B2-4BC9-86E8-31F04D45A949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F106C6C5-A3B2-4BC9-86E8-31F04D45A949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F106C6C5-A3B2-4BC9-86E8-31F04D45A949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47944A16-DD7D-43D5-B473-86B743C12BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47944A16-DD7D-43D5-B473-86B743C12BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47944A16-DD7D-43D5-B473-86B743C12BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47944A16-DD7D-43D5-B473-86B743C12BB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

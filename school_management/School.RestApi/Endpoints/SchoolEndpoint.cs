@@ -6,9 +6,9 @@ public class SchoolEndpoint : IEndpointDefinition {
     public void DefineEndpoints(WebApplication app) {
         var schools = app.MapGroup("/schools");
 
-        schools.MapGet("/", GetSchools);
-        schools.MapPost("/", CreateSchool);
-        schools.MapGet("/{id}", GetSchoolById);
+        schools.MapGet("/", GetSchools).Produces<School[]>();
+        schools.MapPost("/", CreateSchool).Produces<School>();
+        schools.MapGet("/{id}", GetSchoolById).Produces<School>();
         schools.MapDelete("/{id}", DeleteSchoolById);
     }
 
