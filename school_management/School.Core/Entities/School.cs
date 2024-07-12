@@ -1,6 +1,6 @@
 namespace School.Core.Entities;
 
-public record School(
+public record SchoolEnt(
     int Id,
     string Name
 );

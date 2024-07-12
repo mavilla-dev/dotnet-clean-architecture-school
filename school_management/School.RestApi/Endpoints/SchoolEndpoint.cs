@@ -1,3 +1,5 @@
+using School.Application.Service;
+
 namespace School.RestApi.Endpoints;
 
 public class SchoolEndpoint : IEndpointDefinition {
@@ -12,7 +14,7 @@ public class SchoolEndpoint : IEndpointDefinition {
         schools.MapDelete("/{id}", DeleteSchoolById);
     }
 
-    private IResult GetSchools() {
+    private IResult GetSchools(ISchoolService service) {
         if (_schools.Count == 0) {
             return TypedResults.NoContent();
         }

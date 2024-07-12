@@ -1,0 +1,14 @@
+{
+    "version": "0.2",
+    "ignorePaths": [
+        ".devcontainer/devcontainer.json",
+        "cspell.json"
+    ],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "Npgsql"
+    ],
+    "ignoreWords": [],
+    "import": []
+}
