@@ -131,3 +131,9 @@ _ReSharper*/
 **/.DS_Store
 
 **/_NCrunch*
+
+#####
+## Vite / React / Node
+#####
+
+**/node_modules
