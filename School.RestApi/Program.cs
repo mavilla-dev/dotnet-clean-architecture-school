@@ -7,19 +7,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddEndpoints();
+builder.Services.AddSchoolEndpoints();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseHttpsRedirection();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.MapEndpointDefinitions();
+
+app.MapSchoolEndpointDefinitions();
 
 app.Run();
 

@@ -3,7 +3,7 @@ using School.RestApi.Endpoints;
 namespace School.RestApi;
 
 public static class RestApiExtensions {
-    public static void AddEndpoints(this IServiceCollection services) {
+    public static void AddSchoolEndpoints(this IServiceCollection services) {
         var definitions = new List<IEndpointDefinition>();
         var interfaceType = typeof(IEndpointDefinition);
 
@@ -16,7 +16,7 @@ public static class RestApiExtensions {
         }
     }
 
-    public static void MapEndpointDefinitions(this WebApplication app) {
+    public static void MapSchoolEndpointDefinitions(this WebApplication app) {
         var definitions = app.Services.GetServices<IEndpointDefinition>();
         foreach (var def in definitions) {
             def.DefineEndpoints(app);

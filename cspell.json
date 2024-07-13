@@ -2,7 +2,12 @@
     "version": "0.2",
     "ignorePaths": [
         ".devcontainer/devcontainer.json",
-        "cspell.json"
+        "cspell.json",
+        "school.spa/node_modules/**.*",
+        "school.spa/tsconfig.app.json",
+        "school.spa/tsconfig.json",
+        "school.spa/tsconfig.node.json",
+        "school.spa/vite.config.json"
     ],
     "dictionaryDefinitions": [],
     "dictionaries": [],
