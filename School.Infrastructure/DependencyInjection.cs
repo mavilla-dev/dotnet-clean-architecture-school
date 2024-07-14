@@ -4,7 +4,7 @@ using School.Application.Interfaces.Persistance;
 using School.Infrastructure.Postgres.Dapper;
 using School.Infrastructure.Postgres.EF;
 
-namespace School.Infrastructure;
+namespace School.Infrastructure.Injection;
 
 public static class DependencyInjection {
     public static IServiceCollection AddSchoolInfrastructure(this IServiceCollection services, IConfiguration config) {
@@ -28,6 +28,6 @@ public static class DependencyInjection {
     /// </summary>
     private static void AddDapperServices(IServiceCollection services) {
         services.AddSingleton<SchoolRepositoryPostgresDapper>();
-        services.AddScoped<ISchoolRepository, SchoolRepositoryPostgresDapper>();
+        services.AddSingleton<ISchoolRepository, SchoolRepositoryPostgresDapper>();
     }
 }

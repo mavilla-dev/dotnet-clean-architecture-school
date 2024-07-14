@@ -4,6 +4,8 @@ namespace School.Application.Interfaces.Persistance;
 
 public interface ISchoolRepository
 {
-    public Task<SchoolEnt?> GetSchoolById(int id);
-    public Task<SchoolEnt> CreateSchool(string schoolName);
+    public Task<SchoolEnt?> GetSchoolByIdAsync(int id);
+    public Task<SchoolEnt> CreateSchoolAsync(string schoolName);
+    public Task<IList<SchoolEnt>> SearchSchoolsAsync();
+    Task DeleteSchoolByIdAsync(int id);
 }

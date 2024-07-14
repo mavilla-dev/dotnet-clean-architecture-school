@@ -1,49 +1,50 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32.SafeHandles;
+using School.Application.Interfaces.Service;
 using School.Application.Service;
+using School.Core.Entities;
 
 namespace School.RestApi.Endpoints;
 
 public class SchoolEndpoint : IEndpointDefinition {
-    private List<School> _schools = [];
-
     public void DefineEndpoints(WebApplication app) {
         var schools = app.MapGroup("/schools");
 
-        schools.MapGet("/", GetSchools).Produces<School[]>();
-        schools.MapPost("/", CreateSchool).Produces<School>();
-        schools.MapGet("/{id}", GetSchoolById).Produces<School>();
-        schools.MapDelete("/{id}", DeleteSchoolById);
+        schools.MapGet("/", GetSchoolsAsync).Produces<SchoolEnt[]>();
+        schools.MapPost("/", CreateSchoolAsync).Produces<SchoolEnt>();
+
+        schools.MapGet("/{id}", GetSchoolByIdAsync).Produces<SchoolEnt>();
+        schools.MapDelete("/{id}", DeleteSchoolByIdAsync);
     }
 
-    private IResult GetSchools(ISchoolService service) {
-        if (_schools.Count == 0) {
-            return TypedResults.NoContent();
-        }
-        return TypedResults.Ok(_schools);
+    private async Task<IResult> GetSchoolsAsync(ISchoolService service) {
+        var schools = await service.SearchSchoolsAsync();
+        return schools.Count == 0
+            ? Results.NoContent()
+            : Results.Ok(schools);
     }
 
-    private IResult GetSchoolById(int id) {
-        var school = _schools.FirstOrDefault(x => x.Id == id);
+    private async Task<IResult> GetSchoolByIdAsync(
+        ISchoolService service,
+        int id) {
+        var school = await service.GetSchoolByIdAsync(id);
         return school != null
             ? Results.Ok(school)
             : Results.NotFound();
     }
 
-    private IResult DeleteSchoolById(int id) {
+    private async Task<IResult> DeleteSchoolByIdAsync(
+        ISchoolService service,
+        int id) {
+        await service.DeleteSchoolByIdAsync(id);
         return Results.Ok();
     }
 
-    private IResult CreateSchool(NewSchoolRequest newSchool) {
-        if (newSchool == null || newSchool.Name.Trim().Length <= 5) {
-            return Results.BadRequest("Name needs to be longer than 5 characters");
-        }
-
-        var school = new School(_schools.Count, newSchool.Name);
-        _schools.Add(school);
-
-        return TypedResults.Ok(school);
+    private async Task<IResult> CreateSchoolAsync(
+        ISchoolService service,
+        NewSchoolRequest newSchool) {
+        return Results.Ok(await service.CreateSchoolAsync(newSchool.Name));
     }
 }
 
 public record NewSchoolRequest(string Name);
-
-public record School(int Id, string Name);

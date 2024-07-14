@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Options;
 using Npgsql;
 using School.Application.Interfaces.Persistance;
 using School.Core.Entities;
@@ -8,19 +9,24 @@ namespace School.Infrastructure.Postgres.Dapper;
 public class SchoolRepositoryPostgresDapper : ISchoolRepository {
     private readonly DatabaseOption _option;
 
-    public SchoolRepositoryPostgresDapper(DatabaseOption option) {
-        _option = option;
+    public SchoolRepositoryPostgresDapper(IOptions<DatabaseOption> option) {
+        _option = option.Value;
     }
 
-    public async Task<SchoolEnt> CreateSchool(string schoolName) {
+    public async Task<SchoolEnt> CreateSchoolAsync(string schoolName) {
         using var conn = new NpgsqlConnection(_option.Postgres.ConnectionString);
-        var values = new { Name = schoolName, CreateTime = DateTime.Now };
-        await conn.ExecuteAsync(
-            "INSERT INTO school (name, create_time) values (@Name, @CreateTime)",
+        var values = new { Name = schoolName };
+        return await conn.QuerySingleAsync<SchoolEnt>(
+            "INSERT INTO school (name, create_time) values (@Name) RETURNING school.*",
             values);
     }
 
-    public async Task<SchoolEnt?> GetSchoolById(int id) {
+    public async Task DeleteSchoolByIdAsync(int id) {
+        using var conn = new NpgsqlConnection(_option.Postgres.ConnectionString);
+        await conn.ExecuteAsync("delete from school where id = @schoolId", new { schoolId = id });
+    }
+
+    public async Task<SchoolEnt?> GetSchoolByIdAsync(int id) {
         try {
             using var conn = new NpgsqlConnection(_option.Postgres.ConnectionString);
             return await conn.QuerySingleOrDefaultAsync<SchoolEnt?>(
@@ -32,5 +38,10 @@ public class SchoolRepositoryPostgresDapper : ISchoolRepository {
             // todo log e
             return null;
         }
+    }
+
+    public async Task<IList<SchoolEnt>> SearchSchoolsAsync() {
+        using var conn = new NpgsqlConnection(_option.Postgres.ConnectionString);
+        return (await conn.QueryAsync<SchoolEnt>("select * from school order by name")).AsList();
     }
 }
