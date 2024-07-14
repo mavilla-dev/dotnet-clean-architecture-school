@@ -14,7 +14,8 @@
                 "streetsidesoftware.code-spell-checker",
                 "ms-azuretools.vscode-docker",
                 "cweijan.vscode-database-client2",
-                "dbaeumer.vscode-eslint"
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode"
             ]
         }
     },
