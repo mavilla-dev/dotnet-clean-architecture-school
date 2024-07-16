@@ -4,3 +4,10 @@ This is a react powered single page application meant to act as the front-end fo
 We leverage **React** + **TypeScript** + **Vite**. This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Run the project
+On a fresh download, `cd school.spa` and then `npm install` to install all dependencies.
+Then its just a simple
+```
+npm run dev
+```

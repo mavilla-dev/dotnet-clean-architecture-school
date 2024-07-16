@@ -5,7 +5,7 @@ namespace School.RestApi.Endpoints;
 
 public class ErrorsEndpoint : IEndpointDefinition {
     public void DefineEndpoints(WebApplication app) {
-        app.MapGet("/errors", HandleError);
+        app.MapGet("/errors", HandleError).ExcludeFromDescription();
     }
 
     private IResult HandleError() {

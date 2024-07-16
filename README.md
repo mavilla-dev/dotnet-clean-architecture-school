@@ -15,6 +15,7 @@
 | School.RestApi | .NET Minimal API Endpoint |
 | School.BFF.Blazor | Incoming - SPA leveraging Blazor and RestAPI |
 | School.BFF.React | Incoming - SPA leveraging Remix, React and RestAPI |
+| school.spa | Incoming - Static file SPA using React |
 
 Please note that for purposes of showing strengths of Clean Architecture, we implement **Dapper** and **Entity Framework** within the **School.Infrastructure** project. Front-end will also have different views, first being in **React** and another in **Blazor**.
 
