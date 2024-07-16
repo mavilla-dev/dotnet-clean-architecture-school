@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using School.Application.Injection;
 using School.Infrastructure.Injection;
 using School.RestApi;

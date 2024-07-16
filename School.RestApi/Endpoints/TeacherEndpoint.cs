@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+
 namespace School.RestApi.Endpoints;
 
 public class TeacherEndpoint : IEndpointDefinition {

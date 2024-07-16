@@ -1,3 +1,4 @@
+using ErrorOr;
 using School.Application.Interfaces.Persistance;
 using School.Application.Interfaces.Service;
 using School.Core.Entities;
@@ -11,19 +12,19 @@ public class SchoolService : ISchoolService {
         _schoolRepository = schoolRepository;
     }
 
-    public Task<SchoolEnt> CreateSchoolAsync(string name) {
+    public Task<ErrorOr<SchoolEnt>> CreateSchoolAsync(string name) {
         return _schoolRepository.CreateSchoolAsync(name);
     }
 
-    public Task DeleteSchoolByIdAsync(int id) {
+    public Task<ErrorOr<int>> DeleteSchoolByIdAsync(int id) {
         return _schoolRepository.DeleteSchoolByIdAsync(id);
     }
 
-    public Task<SchoolEnt?> GetSchoolByIdAsync(int id) {
+    public Task<ErrorOr<SchoolEnt?>> GetSchoolByIdAsync(int id) {
         return _schoolRepository.GetSchoolByIdAsync(id);
     }
 
-    public Task<IList<SchoolEnt>> SearchSchoolsAsync() {
+    public Task<ErrorOr<IList<SchoolEnt>>> SearchSchoolsAsync() {
         return _schoolRepository.SearchSchoolsAsync();
     }
 }

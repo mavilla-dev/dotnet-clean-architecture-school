@@ -7,7 +7,8 @@
         "school.spa/tsconfig.app.json",
         "school.spa/tsconfig.json",
         "school.spa/tsconfig.node.json",
-        "school.spa/vite.config.json"
+        "school.spa/vite.config.json",
+        "school.spa/package.json"
     ],
     "dictionaryDefinitions": [],
     "dictionaries": [],

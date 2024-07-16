@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Builder;
+
 namespace School.RestApi.Endpoints;
 
 public interface IEndpointDefinition {
