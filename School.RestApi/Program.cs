@@ -27,7 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseExceptionHandler("/errors");
 app.MapRestApiEndpoints();
 
 app.Run();
