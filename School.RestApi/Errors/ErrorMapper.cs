@@ -5,11 +5,11 @@ namespace School.RestApi.Errors;
 
 public static class ErrorMapper {
     public static IResult ErrorToProblem(this IResultExtensions results, Error err) {
-        var statusCode = GetStatusCodeByError(err);
+        var statusCode = MapErrorToStatusCode(err);
         return Results.Problem(detail: err.Description, statusCode: statusCode);
     }
 
-    private static int GetStatusCodeByError(Error err) {
+    private static int MapErrorToStatusCode(Error err) {
         return err.Type switch {
             ErrorType.Conflict => StatusCodes.Status409Conflict,
             ErrorType.Failure => StatusCodes.Status500InternalServerError,
